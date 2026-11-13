@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "CampusLost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "Posts",
+      "applicationUrl": "http://localhost:5099",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

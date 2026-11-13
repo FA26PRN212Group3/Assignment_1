@@ -1,0 +1,348 @@
+@model LostItemPost
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="web_standard" name="shell-type" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+        <style>
+            @@layer
+            base {
+
+                html,
+                body {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                body {
+                    overscroll-behavior: none;
+                }
+
+                main> :first-child {
+                    margin-top: 0 !important;
+                }
+
+                main> :last-child {
+                    margin-bottom: 0 !important;
+                }
+            }
+
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script
+    id="tailwind-config">
+            tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-highest": "#d3e4fe", "on-primary-fixed": "#001551", "surface-bright": "#f8f9ff", "on-primary": "#ffffff", "primary": "#0037b0", "on-error-container": "#93000a", "secondary-fixed": "#ffdbd0", "on-tertiary-fixed-variant": "#005323", "on-tertiary-container": "#88ea9a", "tertiary-container": "#006b2f", "on-surface": "#0b1c30", "primary-fixed": "#dce1ff", "on-tertiary": "#ffffff", "surface-dim": "#cbdbf5", "primary-fixed-dim": "#b7c4ff", "error-container": "#ffdad6", "outline": "#747686", "on-secondary-fixed-variant": "#832600", "primary-container": "#1d4ed8", "secondary-container": "#fd6b36", "tertiary-fixed-dim": "#79db8d", "tertiary": "#005022", "surface-container-low": "#eff4ff", "on-background": "#0b1c30", "surface-container-high": "#dce9ff", "on-secondary-fixed": "#390c00", "secondary-fixed-dim": "#ffb59d", "on-error": "#ffffff", "background": "#f8f9ff", "on-secondary-container": "#5d1900", "surface-container": "#e5eeff", "inverse-on-surface": "#eaf1ff", "inverse-surface": "#213145", "on-primary-container": "#cad3ff", "inverse-primary": "#b7c4ff", "secondary": "#ac3400", "on-tertiary-fixed": "#00210a", "surface": "#f8f9ff", "outline-variant": "#c4c5d7", "on-primary-fixed-variant": "#0039b5", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "surface-tint": "#2151da", "error": "#ba1a1a", "on-surface-variant": "#434655", "surface-variant": "#d3e4fe", "tertiary-fixed": "#95f8a7" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "1rem", "space-md": "1rem", "margin-md": "1.5rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "gutter-lg": "1.5rem", "margin-lg": "2rem", "gutter": "1rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-xxl": "3rem" }, "fontFamily": { "headline-sm": ["Inter"], "label-sm": ["Inter"], "label-lg": ["Inter"], "body-sm": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"], "headline-lg-mobile": ["Inter"], "body-md": ["Inter"], "headline-md": ["Inter"], "display": ["Inter"], "display-mobile": ["Inter"], "title-md": ["Inter"], "body-lg": ["Inter"] }, "fontSize": { "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } };
+        </script>
+    </head>
+
+    <body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col">
+        <header class="sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+            <div class="h-16 max-w-7xl mx-auto px-margin lg:px-margin-lg flex items-center justify-between gap-space-md">
+                <div class="flex items-center gap-space-xl">
+                    <a class="flex items-center gap-space-sm group" asp-controller="Posts" asp-action="Index">
+                        <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+                            <span class="material-symbols-outlined text-[24px]">find_replace</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-headline-sm text-headline-sm tracking-tight text-primary-container leading-none">CampusLost</span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant leading-none mt-1">Đại học & Ký túc xá</span>
+                        </div>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-space-lg h-16" data-active-classes="text-primary-container font-label-lg font-bold border-b-2 border-primary-container">
+                        <a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-colors flex items-center h-full px-space-xs" asp-controller="Posts" asp-action="Index">Danh sách tin</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-space-md">
+                    <a class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary transition-colors shadow-sm" asp-controller="Posts" asp-action="Create">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        <span>+ Đăng tin</span>
+                    </a>
+                    <div class="relative flex items-center gap-space-sm pl-space-sm">
+                        <button class="flex items-center gap-space-sm rounded-full p-0.5 hover:ring-2 hover:ring-primary-container/20 transition-all focus:outline-none" type="button">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+                            </div>
+                            <span class="hidden xl:block font-label-lg text-label-lg text-on-surface">Sinh viên</span>
+                            <span class="material-symbols-outlined text-on-surface-variant text-[18px]">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="w-full flex-1 max-w-7xl mx-auto px-margin lg:px-margin-lg py-space-lg bg-surface">
+            <div class="flex flex-col w-full pb-space-xxl">
+                <!-- Breadcrumb & Top Bar -->
+                <div class="flex flex-col gap-space-xs mb-space-lg">
+                    <nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+                        <a class="hover:text-primary transition-colors flex items-center gap-1" asp-controller="Posts" asp-action="Index">
+                            <span class="material-symbols-outlined text-[16px]">home</span>
+                            <span>Trang chủ</span>
+                        </a>
+                        <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+                        <a class="hover:text-primary transition-colors" asp-controller="Posts" asp-action="Index">Danh sách tin</a>
+                        <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+                        <span aria-current="page" class="text-on-surface font-semibold">Đăng tin mới</span>
+                    </nav>
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm pt-space-xs">
+                        <div>
+                            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Đăng tin đồ thất lạc</h1>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Vui lòng điền đầy đủ và chính xác thông tin để hỗ trợ xác minh và trao trả đồ nhanh nhất.</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-surface-container-low px-space-md py-1.5 rounded-lg shadow-sm">
+                            <span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+                            <span class="font-label-sm text-label-sm text-on-surface">Kiểm duyệt bởi Ban Quản lý Campus</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Layout Container (Center-aligned 8-col feel) -->
+                <div class="w-full max-w-4xl mx-auto">
+                    <form class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md lg:p-space-xl flex flex-col gap-space-lg" id="lostFoundForm" asp-action="Create" method="post">
+                        <div asp-validation-summary="All" class="text-error text-body-sm">
+                        </div>
+                        <!-- Status Notice / Anti-fraud tip -->
+                        <div class="flex items-start gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-[22px] flex-shrink-0 mt-0.5">info</span>
+                            <div class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+                                <strong class="text-on-surface font-semibold">Lưu ý bảo mật:</strong>
+                                Đối với đồ vật có giá
+                                trị cao (Ví tiền, Điện thoại, Laptop), không nên đăng kèm mật mã, số seri hoàn chỉnh hoặc
+                                giấy tờ quan trọng. Đội trực ban sẽ đối chiếu chi tiết riêng tư khi đối soát.
+                            </div>
+                        </div>
+                        <!-- Field 1: Tên đồ vật (With Error Validation Example) -->
+                        <div class="flex flex-col gap-space-xs">
+                            <div class="flex justify-between items-baseline">
+                                <label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1" for="itemTitle">
+                                    <span>Tên đồ vật</span>
+                                    <span class="text-error text-sm">*</span>
+                                </label>
+                                <span class="font-label-sm text-label-sm text-outline">Bắt buộc</span>
+                            </div>
+                            <div class="relative">
+                                <input aria-describedby="itemTitle-error" class="w-full h-11 px-3.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface shadow-sm outline-none transition-all placeholder:text-outline shadow-[0_0_0_1px_#c4c5d7]" id="itemTitle" asp-for="Title" maxlength="100" placeholder="Ví dụ: Bình nước Lock&Lock, Thẻ sinh viên K62..." type="text" />
+                            </div>
+                            <!-- Validation Error Message with Alert Icon -->
+                            <span asp-validation-for="Title" id="itemTitle-error" class="text-error text-label-md">
+                            </span>
+                        </div>
+                        <!-- Field 2: Loại tin (Radio Toggle Cards) -->
+                        <div class="flex flex-col gap-space-xs">
+                            <div class="flex justify-between items-baseline">
+                                <label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1">
+                                    <span>Loại tin</span>
+                                    <span class="text-error text-sm">*</span>
+                                </label>
+                                <span class="font-label-sm text-label-sm text-outline">Chọn đúng phân loại</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+                                <!-- Option: Bị mất -->
+                                <label class="relative flex items-start gap-space-md p-space-md rounded-xl cursor-pointer transition-all bg-surface-container-low shadow-sm hover:shadow-md has-[:checked]:shadow-[0_0_0_2px_#fd6b36] has-[:checked]:bg-secondary-fixed/30">
+                                    <input class="mt-1 accent-secondary text-secondary focus:ring-0 cursor-pointer w-4 h-4" id="kindLost" asp-for="Kind" type="radio" value="1" aria-describedby="kind-error" />
+                                    <div class="flex flex-col gap-1 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold bg-secondary-fixed text-secondary flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-[14px]">search</span>
+                                                Bị mất
+                                            </span>
+                                            <span class="font-title-md text-title-md text-on-surface font-semibold">Tôi làm mất tài sản</span>
+                                        </div>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant">Đăng bài thông báo tới các sinh viên và bảo vệ các tòa để hỗ trợ rà soát khu vực.</p>
+                                    </div>
+                                </label>
+                                <!-- Option: Nhặt được -->
+                                <label class="relative flex items-start gap-space-md p-space-md rounded-xl cursor-pointer transition-all bg-surface-container-low shadow-sm hover:shadow-md has-[:checked]:shadow-[0_0_0_2px_#006b2f] has-[:checked]:bg-tertiary-fixed/30">
+                                    <input class="mt-1 accent-tertiary text-tertiary focus:ring-0 cursor-pointer w-4 h-4" id="kindFound" asp-for="Kind" type="radio" value="2" aria-describedby="kind-error" />
+                                    <div class="flex flex-col gap-1 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold bg-tertiary-fixed text-tertiary flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-[14px]">volunteer_activism</span>
+                                                Nhặt được
+                                            </span>
+                                            <span class="font-title-md text-title-md text-on-surface font-semibold">Tôi nhặt được đồ</span>
+                                        </div>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant">Tìm chủ nhân tài sản hoặc đăng thông tin trước khi bàn giao cho trực ban toà nhà.</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <span asp-validation-for="Kind" id="kind-error" class="text-error text-label-md"></span>
+                        </div>
+                        <!-- Field 3: Địa điểm & Gợi ý (Campus chips) -->
+                        <div class="flex flex-col gap-space-xs">
+                            <label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1" for="itemLocation">
+                                <span>Địa điểm</span>
+                                <span class="text-error text-sm">*</span>
+                            </label>
+                            <div class="relative">
+                                <input class="w-full h-11 pl-10 pr-3.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface shadow-sm outline-none transition-all placeholder:text-outline shadow-[0_0_0_1px_#c4c5d7] focus:shadow-[0_0_0_2px_#1d4ed8]" id="itemLocation" asp-for="Location" maxlength="120" placeholder="Ví dụ: Bàn học tầng 3 Thư viện, Sảnh tòa A..." type="text" />
+                                <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-outline">
+                                    <span class="material-symbols-outlined text-[20px]">location_on</span>
+                                </div>
+                            </div>
+                            <!-- Quick suggestions chips -->
+                            <div class="flex flex-wrap items-center gap-2 mt-1.5">
+                                <span class="font-label-sm text-label-sm text-on-surface-variant">Gợi ý địa điểm:</span>
+                                <button class="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container-low hover:bg-surface-container-highest text-on-surface rounded-full font-label-md text-label-md transition-colors shadow-xs" onclick="document.getElementById('itemLocation').value = 'Sảnh Tòa A'; document.getElementById('itemLocation').focus();" type="button">
+                                    <span class="material-symbols-outlined text-[14px] text-primary">add</span>
+                                    Sảnh Tòa A
+                                </button>
+                                <button class="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container-low hover:bg-surface-container-highest text-on-surface rounded-full font-label-md text-label-md transition-colors shadow-xs" onclick="document.getElementById('itemLocation').value = 'Thư viện Tầng 2'; document.getElementById('itemLocation').focus();" type="button">
+                                    <span class="material-symbols-outlined text-[14px] text-primary">add</span>
+                                    Thư viện
+                                    Tầng 2
+                                </button>
+                                <button class="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container-low hover:bg-surface-container-highest text-on-surface rounded-full font-label-md text-label-md transition-colors shadow-xs" onclick="document.getElementById('itemLocation').value = 'Canteen B'; document.getElementById('itemLocation').focus();" type="button">
+                                    <span class="material-symbols-outlined text-[14px] text-primary">add</span>
+                                    Canteen B
+                                </button>
+                                <button class="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container-low hover:bg-surface-container-highest text-on-surface rounded-full font-label-md text-label-md transition-colors shadow-xs" onclick="document.getElementById('itemLocation').value = 'Nhà xe Ký túc xá D5'; document.getElementById('itemLocation').focus();" type="button">
+                                    <span class="material-symbols-outlined text-[14px] text-primary">add</span>
+                                    Ký túc xá D5
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Field 4: Mô tả & Bộ đếm ký tự -->
+                        <div class="flex flex-col gap-space-xs">
+                            <div class="flex justify-between items-baseline">
+                                <label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1" for="itemDescription">
+                                    <span>Mô tả chi tiết</span>
+                                    <span class="text-error text-sm">*</span>
+                                </label>
+                                <span class="font-label-sm text-label-sm text-outline" id="charCounter">@(Model.Description?.Length ?? 0) / 500 ký tự</span>
+                            </div>
+                            <textarea class="w-full p-3.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface shadow-sm outline-none transition-all placeholder:text-outline shadow-[0_0_0_1px_#c4c5d7] focus:shadow-[0_0_0_2px_#1d4ed8] resize-y" id="itemDescription" maxlength="500" asp-for="Description" oninput="document.getElementById('charCounter').innerText = this.value.length + ' / 500 ký tự';" placeholder="Mô tả đặc điểm nhận dạng, màu sắc, thời điểm, nhãn hiệu hoặc vết trầy xước đặc trưng..." rows="4">
+                            </textarea>
+                        </div>
+                        <!-- Field 5: Thông tin liên hệ -->
+                        <div class="flex flex-col gap-space-xs">
+                            <label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1" for="contactInfo">
+                                <span>Thông tin liên hệ</span>
+                                <span class="text-error text-sm">*</span>
+                            </label>
+                            <div class="relative">
+                                <input class="w-full h-11 pl-10 pr-3.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface shadow-sm outline-none transition-all placeholder:text-outline shadow-[0_0_0_1px_#c4c5d7] focus:shadow-[0_0_0_2px_#1d4ed8]" id="contactInfo" asp-for="Contact" maxlength="120" placeholder="Email sinh viên (@@sv.edu.vn) hoặc Số điện thoại liên hệ..." type="text" />
+                                <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-outline">
+                                    <span class="material-symbols-outlined text-[20px]">alternate_email</span>
+                                </div>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                <span class="material-symbols-outlined text-[16px] text-tertiary-container">lock</span>
+                                <span>Thông tin liên hệ chỉ hiển thị với mục đích đối chiếu và trao trả tài sản an toàn.</span>
+                            </p>
+                        </div>
+                        <!-- Optional Attachment Section: Drag & Drop Area -->
+                        <div class="flex flex-col gap-space-xs">
+                            <div class="flex justify-between items-baseline">
+                                <label class="font-label-lg text-label-lg text-on-surface font-bold">Hình ảnh minh họa</label>
+                                <span class="font-label-sm text-label-sm text-outline">Không bắt buộc</span>
+                            </div>
+                            <div class="relative group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all rounded-xl p-space-lg flex flex-col items-center justify-center text-center shadow-xs">
+                                <input accept="image/png, image/jpeg" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="attachmentFile" name="Attachment" type="file" />
+                                <div class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary-container shadow-sm mb-space-sm group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-[28px]">add_photo_alternate</span>
+                                </div>
+                                <span class="font-title-md text-title-md text-on-surface">
+                                    Kéo thả ảnh vào đây hoặc
+                                    <span class="text-primary-container underline underline-offset-2">chọn từ thiết bị</span>
+                                </span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Đính kèm hình ảnh minh họa (JPG, PNG dưới 5MB). Ảnh chưa được lưu trong phiên bản hiện tại.</span>
+                                <div class="mt-space-md flex items-center gap-space-md text-outline font-label-sm text-label-sm">
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[16px]">photo_size_select_actual</span>
+                                        Tối đa 3 hình
+                                    </span>
+                                    <span>•</span>
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[16px]">visibility</span>
+                                        Xem trước tức thì
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form Actions Footer -->
+                        <div class="pt-space-md flex flex-col-reverse sm:flex-row items-center justify-between gap-space-md bg-surface-container-lowest">
+                            <!-- Secondary Button: Quay về -->
+                            <a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-2.5 bg-surface-container text-on-surface rounded-lg font-label-lg text-label-lg hover:bg-surface-container-high transition-colors shadow-xs" asp-controller="Posts" asp-action="Index">
+                                <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                                <span>Quay về danh sách</span>
+                            </a>
+                            <!-- Primary Button: Đăng tin -->
+                            <button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-6 py-2.5 bg-primary-container hover:bg-primary text-on-primary rounded-lg font-label-lg text-label-lg transition-all shadow-md active:scale-95" type="submit">
+                                <span class="material-symbols-outlined text-[20px]">send</span>
+                                <span>Đăng tin</span>
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Support Help Card -->
+                    <div class="mt-space-xl p-space-md bg-surface-container-low rounded-xl flex flex-col sm:flex-row items-center justify-between gap-space-md">
+                        <div class="flex items-center gap-space-md">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[24px]">support_agent</span>
+                            </div>
+                            <div>
+                                <h4 class="font-title-md text-title-md text-on-surface">Cần trợ giúp trực tiếp khẩn cấp?</h4>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Liên hệ phòng bảo vệ Tòa Nhà Điều Hành: (024) 3869 1118 (24/7)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Keep the character counter correct after server-side validation.
+                const description = document.getElementById('itemDescription');
+                document.getElementById('charCounter').innerText = description.value.length + ' / 500 k? t?';
+            </script>
+        </main>
+        <footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-auto">
+            <div class="max-w-7xl mx-auto px-margin lg:px-margin-lg py-space-xl">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl">
+                    <div class="md:col-span-2 flex flex-col gap-space-sm">
+                        <div class="flex items-center gap-space-sm">
+                            <div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+                                <span class="material-symbols-outlined text-[18px]">school</span>
+                            </div>
+                            <span class="font-title-md text-title-md text-on-surface">CampusLost Portal</span>
+                        </div>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Cổng thông tin tiếp nhận, quản lý và xác minh đồ thất lạc dành cho toàn thể sinh viên, giảng viên và cán bộ trong khuôn viên nhà trường.</p>
+                        <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mt-space-sm">
+                            <span class="material-symbols-outlined text-[16px]">location_on</span>
+                            <span>Văn phòng Công tác Sinh viên - Tòa A1, Phòng 102</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-space-sm">
+                        <span class="font-label-lg text-label-lg text-on-surface font-bold">Liên kết nhanh</span>
+                        <nav class="flex flex-col gap-space-xs">
+                            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="noi-quy-nhan-do" href="#">Nội quy bàn giao</a>
+                            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="ho-tro-sinh-vien" href="#">Hỗ trợ sinh viên</a>
+                        </nav>
+                    </div>
+                    <div class="flex flex-col gap-space-sm">
+                        <span class="font-label-lg text-label-lg text-on-surface font-bold">Ban Quản lý & Bảo vệ</span>
+                        <nav class="flex flex-col gap-space-xs">
+                            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="lien-he-ban-quan-ly" href="#">Liên hệ trực ban</a>
+                            <span class="font-body-sm text-body-sm text-on-surface-variant">Hotline: (024) 3869 xxxx</span>
+                            <span class="font-body-sm text-body-sm text-on-surface-variant">Email: lostfound@campus.edu.vn</span>
+                        </nav>
+                    </div>
+                </div>
+                <div class="border-t border-outline-variant mt-space-xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-center">
+                    <p class="font-label-sm text-label-sm text-on-surface-variant">© 2025 CampusLost - Hệ thống tìm kiếm đồ thất lạc trường Đại học. Phát triển theo chuẩn ASP.NET Core MVC & Bootstrap Responsive.</p>
+                    <div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+                        <span>Phiên bản 2.4.0</span>
+                        <span>Bảo mật dữ liệu SV</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
