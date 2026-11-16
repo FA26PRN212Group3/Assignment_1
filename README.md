@@ -14,8 +14,8 @@ CampusLost giúp sinh viên trong trường và ký túc xá báo mất, đăng 
 | Razor Views | Kết hợp HTML với dữ liệu C# và dùng Tag Helpers để tạo form, liên kết và thông báo lỗi. Ba màn hình nằm trong [Views/Posts](PRN212_Assignment1/CampusLost/Views/Posts). |
 | Entity Framework Core | Dùng LINQ để truy vấn và lưu đối tượng C#, phù hợp với các thao tác đọc, lọc và thêm tin. Provider SQL Server 8.0.25 được khai báo trong [CampusLost.csproj](PRN212_Assignment1/CampusLost/CampusLost.csproj), mapping nằm trong [CampusLostDbContext.cs](PRN212_Assignment1/CampusLost/Data/CampusLostDbContext.cs). |
 | SQL Server | Lưu tin bền vững, hỗ trợ dữ liệu tiếng Việt và ràng buộc dữ liệu tại bảng. Schema và dữ liệu mẫu nằm trong [CampusLostDb.sql](CampusLostDb.sql). |
-| Visual Studio | Mở solution, build và debug để theo dõi request từ controller đến database. Dùng [PRN212_Assignment1.sln](PRN212_Assignment1/PRN212_Assignment1.sln) và [launchSettings.json](PRN212_Assignment1/CampusLost/Properties/launchSettings.json). |
-| Codex CLI | Hỗ trợ đọc source, sửa và build từ terminal trong Visual Studio. Ví dụ demo tập trung vào [PostsController.cs](PRN212_Assignment1/CampusLost/Controllers/PostsController.cs) và [Index.cshtml](PRN212_Assignment1/CampusLost/Views/Posts/Index.cshtml). |
+| Visual Studio | IDE nhóm dùng để mở solution, build, chạy và debug web ASP.NET Core MVC. Dùng [PRN212_Assignment1.sln](PRN212_Assignment1/PRN212_Assignment1.sln) và [launchSettings.json](PRN212_Assignment1/CampusLost/Properties/launchSettings.json). |
+| OpenAI Codex trên Windows | Nhóm dùng Codex trong ứng dụng ChatGPT trên máy tính để mở thư mục repo CampusLost, gửi prompt, chỉnh sửa mã nguồn và xem diff. |
 
 ## 2. Chạy lần đầu
 
@@ -83,16 +83,17 @@ Khi gửi tin, [Create.cshtml](PRN212_Assignment1/CampusLost/Views/Posts/Create.
 
 **Tìm kiếm và lọc.** Form gửi GET tới `/Posts` với `q` là một phần tên đồ vật và `kind` là loại tin. Controller trim hai đầu `q`, áp dụng `Title.Contains(...)` nếu có từ khóa và thêm điều kiện `Kind` nếu chọn `1` hoặc `2`. Hai điều kiện được kết hợp trên truy vấn EF Core trước `ToListAsync()`. Collation `Vietnamese_CI_AS` của cột `Title` giúp tìm không phân biệt hoa thường và vẫn phân biệt dấu. Form giữ lựa chọn sau khi tải lại, hiện thông báo khi không có kết quả và đưa về `/Posts` khi bấm **Xóa lọc**.
 
-## 4. Demo dùng Codex trong Visual Studio
+## 4. Demo bộ lọc bài đăng với Codex trên Windows
 
-1. Cài Codex CLI, mở **View → Terminal** trong Visual Studio rồi chuyển đến thư mục gốc repo. Chạy `codex` và đăng nhập khi được yêu cầu. [Tài liệu Codex CLI](https://learn.chatgpt.com/docs/codex/cli)
-2. Nhập yêu cầu trong phiên Codex. Dùng prompt dưới đây để minh họa yêu cầu thêm bộ lọc trên phiên bản trước khi có tính năng. Source hiện tại đã có bộ lọc này.
-3. Đọc diff trong **Git Changes** hoặc bằng `git diff`. Kiểm tra điều kiện lọc nằm trước `ToListAsync()`, form dùng GET và giữ giá trị đã chọn. Build và chạy các ca lọc trong mục 6.
+1. Mở ứng dụng ChatGPT trên Windows, đăng nhập và chọn **Codex**. Mở thư mục gốc repo CampusLost dưới dạng dự án cục bộ. [Hướng dẫn mở dự án cục bộ](https://learn.chatgpt.com/docs/projects)
+2. Gửi prompt mẫu bên dưới trong Codex để chỉnh sửa mã nguồn. Dùng phiên bản trước khi có bộ lọc nếu muốn trình diễn bước thêm tính năng. Mã nguồn hiện tại đã có bộ lọc.
+3. Mở khung xem diff trong Codex và xem các tệp đã sửa. Trong [PostsController.cs](PRN212_Assignment1/CampusLost/Controllers/PostsController.cs), kiểm tra hai điều kiện lọc được kết hợp trước `ToListAsync()`. Trong [Index.cshtml](PRN212_Assignment1/CampusLost/Views/Posts/Index.cshtml), kiểm tra form gửi GET và giữ giá trị đã chọn. [Hướng dẫn xem diff trong ứng dụng](https://learn.chatgpt.com/docs/code-review#review-in-the-app)
+4. Mở [PRN212_Assignment1.sln](PRN212_Assignment1/PRN212_Assignment1.sln) từ cùng thư mục repo trong Visual Studio. Chọn **Build → Build Solution**, chọn profile **CampusLost** rồi nhấn **F5** để chạy với debugger. Dùng cấu hình database ở mục 2.
+5. Trên trang `/Posts`, tìm `BÌNH` và chọn **Nhặt được**. Với dữ liệu mẫu, danh sách chỉ hiện **Bình nước xanh** và form giữ cả hai giá trị. Thử tiếp `KhongCoVatPham123` để thấy thông báo không có kết quả, rồi bấm **Xóa lọc** để về danh sách đầy đủ. Kết quả mong đợi cho từng ca nằm ở mục 6.
 
 **Prompt mẫu**
 
-> Thêm bộ lọc cho CampusLost ở /Posts. Form dùng GET với q và kind. Trim q, tìm theo một phần Title không phân biệt hoa thường và kết hợp loại tin Bị mất hoặc Nhặt được trong truy vấn EF Core trước ToListAsync(). Giữ giá trị trên form, hiển thị thông báo khi không có kết quả và cho Xóa lọc quay lại /Posts. Chạy build rồi thử BÌNH + Nhặt được, từ khóa không khớp và Xóa lọc.
-
+> Thêm bộ lọc cho CampusLost ở /Posts. Form dùng GET với q và kind. Trim q, tìm theo một phần Title không phân biệt hoa thường và kết hợp loại tin Bị mất hoặc Nhặt được trong truy vấn EF Core trước ToListAsync(). Giữ giá trị trên form, hiển thị thông báo khi không có kết quả và cho Xóa lọc quay lại /Posts. Liệt kê các tệp đã sửa để nhóm xem diff trước khi dùng Visual Studio để build và kiểm tra.
 
 ## 5. Cấu trúc code
 
